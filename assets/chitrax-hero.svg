@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 680" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 684" width="100%" height="100%">
   <defs>
     <style>
       * {
@@ -7,25 +7,25 @@
 
       /* Base card drop shadow */
       .card-shadow {
-        filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.45));
+        filter: drop-shadow(0 16px 36px rgba(15, 23, 42, 0.08));
       }
 
       .inner-shadow {
-        filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.25));
+        filter: drop-shadow(0 4px 12px rgba(15, 23, 42, 0.04));
       }
 
       /* Subtle Hover / Floating Animations */
-      @keyframes float-icon-1 {
+      @keyframes float-cards {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-4px) rotate(1deg); }
+      }
+      @keyframes float-pdf {
         0%, 100% { transform: translateY(0px); }
         50% { transform: translateY(-3.5px); }
       }
-      @keyframes float-icon-2 {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(3px); }
-      }
 
-      .float-1 { animation: float-icon-1 3.2s ease-in-out infinite; }
-      .float-2 { animation: float-icon-2 3.8s ease-in-out infinite; }
+      .float-card-anim { animation: float-cards 4s ease-in-out infinite; transform-origin: 410px 410px; }
+      .float-pdf-anim { animation: float-pdf 3.6s ease-in-out infinite; transform-origin: 890px 410px; }
 
       /* Star twinkle */
       @keyframes star-twinkle {
@@ -36,7 +36,7 @@
         50% {
           transform: scale(1.15) rotate(6deg);
           opacity: 1;
-          filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.8));
+          filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.6));
         }
       }
       .twinkle {
@@ -44,389 +44,552 @@
         transform-origin: 746px 86px;
       }
 
-      /* Glowing spark */
-      @keyframes spark-glow {
-        0%, 100% { transform: scale(1); opacity: 0.85; }
-        50% { transform: scale(1.2); opacity: 1; filter: drop-shadow(0 0 8px #66F1FF); }
+      /* Pulsing live dot */
+      @keyframes live-pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.4; transform: scale(1.25); }
       }
-      .spark-anim {
-        animation: spark-glow 2.5s ease-in-out infinite;
-        transform-origin: 76px 31px;
+      .pulse {
+        animation: live-pulse 2s ease-in-out infinite;
+        transform-origin: 18px 18px;
       }
     </style>
 
-    <!-- Deep Space Obsidian Background Gradients -->
-    <linearGradient id="bg-canvas" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#080C14" />
-      <stop offset="50%" stop-color="#0F172A" />
-      <stop offset="100%" stop-color="#090D16" />
+    <!-- Canvas Background Gradient -->
+    <linearGradient id="canvas-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="50%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#F1F5F9" />
     </linearGradient>
 
-    <!-- Main Card Dark Glassmorphic Gradient -->
-    <linearGradient id="card-dark" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#111827" />
-      <stop offset="100%" stop-color="#0B0F19" />
+    <!-- Top Right Purple Aura Wave -->
+    <linearGradient id="purple-wave" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EDE9FE" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#DDD6FE" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
     </linearGradient>
 
-    <!-- Sub-box Dark Gradient -->
-    <linearGradient id="box-dark" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.8" />
-      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.9" />
+    <!-- App Icon Gradient (Vibrant Blue to Violet) -->
+    <linearGradient id="app-icon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="48%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#8B5CF6" />
     </linearGradient>
 
-    <!-- Radiant Border Gradient -->
-    <linearGradient id="border-glow" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.4" />
-      <stop offset="50%" stop-color="#818CF8" stop-opacity="0.2" />
-      <stop offset="100%" stop-color="#F43F5E" stop-opacity="0.3" />
-    </linearGradient>
-
-    <!-- Brand Frame Gradient -->
-    <linearGradient id="chitrax-frame" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#20CBEA" />
-      <stop offset="54%" stop-color="#1764F5" />
-      <stop offset="100%" stop-color="#573DE5" />
-    </linearGradient>
-
-    <linearGradient id="chitrax-landscape" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#22D3EE" />
-      <stop offset="100%" stop-color="#2F5DF5" />
-    </linearGradient>
-
-    <linearGradient id="chitrax-spark" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#66F1FF" />
-      <stop offset="100%" stop-color="#2583FF" />
-    </linearGradient>
-
-    <!-- MorningStar Logo Radiant Gradient -->
-    <linearGradient id="star-cyan-violet" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38BDF8" />
+    <!-- Landscape Icon Gradient inside App Icon -->
+    <linearGradient id="landscape-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA" />
       <stop offset="100%" stop-color="#818CF8" />
     </linearGradient>
 
-    <!-- Neon Dark Badge Gradients -->
-    <linearGradient id="badge-cyan" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#083344" />
-      <stop offset="100%" stop-color="#0E7490" />
-    </linearGradient>
-    <linearGradient id="badge-emerald" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#064E3B" />
-      <stop offset="100%" stop-color="#047857" />
-    </linearGradient>
-    <linearGradient id="badge-amber" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#451A03" />
-      <stop offset="100%" stop-color="#B45309" />
-    </linearGradient>
-    <linearGradient id="badge-purple" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#3B0764" />
-      <stop offset="100%" stop-color="#6B21A8" />
-    </linearGradient>
-    <linearGradient id="badge-rose" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#4C0519" />
-      <stop offset="100%" stop-color="#9F1239" />
-    </linearGradient>
-    <linearGradient id="badge-indigo" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#1E1B4B" />
-      <stop offset="100%" stop-color="#4338CA" />
+    <!-- MorningStar Logo Gradient -->
+    <linearGradient id="star-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#3B82F6" />
     </linearGradient>
 
-    <!-- Checkmark Circle (Neon Cyan) -->
-    <g id="check-icon-cyan">
-      <circle cx="11" cy="11" r="11" fill="#0891B2" />
-      <path d="M7 11.5L9.5 14L15 8.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- Privacy Banner Soft Gradient -->
+    <linearGradient id="privacy-banner-bg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F5F3FF" />
+      <stop offset="100%" stop-color="#EFF6FF" />
+    </linearGradient>
+
+    <!-- Checkmark Circle (Green) -->
+    <g id="check-icon-green">
+      <circle cx="9" cy="9" r="8" fill="#10B981" />
+      <path d="M6 9.2L8 11.2L12 6.8" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
     </g>
 
-    <!-- Rust Icon Vector (Neon Dark) -->
-    <g id="rust-logo">
-      <circle cx="20" cy="20" r="18" fill="#F97316" opacity="0.25" />
-      <path d="M20 7C12.82 7 7 12.82 7 20C7 27.18 12.82 33 20 33C27.18 33 33 27.18 33 20C33 12.82 27.18 7 20 7ZM20 29.5C14.75 29.5 10.5 25.25 10.5 20C10.5 14.75 14.75 10.5 20 10.5C25.25 10.5 29.5 14.75 29.5 20C29.5 25.25 25.25 29.5 20 29.5Z" fill="#FB923C"/>
-      <path d="M17 14H23C24.66 14 26 15.34 26 17C26 18.23 25.26 19.29 24.19 19.74L26.5 24H23.5L21.5 20H19V24H17V14ZM19 16V18.5H23C23.83 18.5 24.5 17.83 24.5 17C24.5 16.17 23.83 15.5 23 15.5H19V16Z" fill="#FDBA74"/>
-    </g>
+    <!-- Stat Tile Soft Gradients -->
+    <linearGradient id="tile-yellow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FEF9C3" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#FEF08A" stop-opacity="0.2" />
+    </linearGradient>
+    <linearGradient id="tile-cyan" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E0F2FE" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#BAE6FD" stop-opacity="0.2" />
+    </linearGradient>
+    <linearGradient id="tile-purple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F3E8FF" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#E9D5FF" stop-opacity="0.2" />
+    </linearGradient>
+    <linearGradient id="tile-blue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#EFF6FF" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#DBEAFE" stop-opacity="0.2" />
+    </linearGradient>
+    <linearGradient id="tile-green" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ECFDF5" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#D1FAE5" stop-opacity="0.2" />
+    </linearGradient>
 
-    <!-- WebAssembly Logo Vector -->
-    <g id="wasm-logo">
-      <circle cx="20" cy="20" r="18" fill="#6366F1" opacity="0.25" />
-      <rect x="8" y="8" width="24" height="24" rx="6" fill="#4F46E5" />
-      <text x="20" y="24" font-size="10.5" font-weight="900" fill="#FFFFFF" text-anchor="middle">WASM</text>
-    </g>
-
-    <!-- React 19 Vector -->
-    <g id="react-logo">
-      <circle cx="20" cy="20" r="18" fill="#0284C7" opacity="0.2" />
-      <ellipse cx="20" cy="20" rx="14" ry="5.5" fill="none" stroke="#38BDF8" stroke-width="2.2" />
-      <ellipse cx="20" cy="20" rx="14" ry="5.5" fill="none" stroke="#38BDF8" stroke-width="2.2" transform="rotate(60 20 20)" />
-      <ellipse cx="20" cy="20" rx="14" ry="5.5" fill="none" stroke="#38BDF8" stroke-width="2.2" transform="rotate(120 20 20)" />
-      <circle cx="20" cy="20" r="2.8" fill="#38BDF8" />
-    </g>
-
-    <!-- Astro Vector -->
-    <g id="astro-logo">
-      <circle cx="20" cy="20" r="18" fill="#EC4899" opacity="0.25" />
-      <path d="M14 26L20 11L26 26" stroke="#F43F5E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
-      <path d="M16 22H24" stroke="#F43F5E" stroke-width="2.6" stroke-linecap="round" />
-      <circle cx="20" cy="20" r="2" fill="#F43F5E" />
-    </g>
+    <!-- 3D Photo Card Gradient -->
+    <linearGradient id="photo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A78BFA" />
+      <stop offset="100%" stop-color="#7C3AED" />
+    </linearGradient>
   </defs>
 
-  <!-- Deep Obsidian Canvas Background -->
-  <rect width="1024" height="680" fill="url(#bg-canvas)" rx="28" />
+  <!-- Background Canvas -->
+  <rect width="1024" height="684" fill="url(#canvas-bg)" rx="28" />
 
-  <!-- Subtle Glowing Nebula Orbs -->
-  <circle cx="120" cy="100" r="140" fill="#06B6D4" opacity="0.12" filter="blur(60px)" />
-  <circle cx="860" cy="80" r="150" fill="#8B5CF6" opacity="0.14" filter="blur(70px)" />
-  <circle cx="512" cy="620" r="180" fill="#F43F5E" opacity="0.08" filter="blur(80px)" />
-
-  <!-- Main Dark Glass Container -->
+  <!-- Main Card Container -->
   <g class="card-shadow">
-    <rect x="24" y="24" width="976" height="632" rx="24" fill="url(#card-dark)" stroke="url(#border-glow)" stroke-width="1.5" />
+    <rect x="20" y="20" width="984" height="644" rx="24" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" />
   </g>
 
-  <!-- Header Section -->
-  <g id="header-brand">
-    <!-- Official Chitrax Brand Icon Vector -->
-    <g transform="translate(52, 48)">
-      <rect x="0" y="0" width="94" height="94" rx="24" fill="#0F172A" stroke="#38BDF8" stroke-width="2" filter="drop-shadow(0 10px 24px rgba(6, 182, 212, 0.35))" />
+  <!-- Top Right Soft Purple Wave Graphic Accent -->
+  <path d="M720 20 C820 40 880 120 1004 80 L1004 20 Z" fill="url(#purple-wave)" />
+  <path d="M840 20 C900 60 950 140 1004 160 L1004 20 Z" fill="#DDD6FE" opacity="0.3" />
+
+  <!-- HEADER BAR -->
+  <g id="header-bar">
+    <!-- App Icon Squircle with Landscape & Sparkle inside -->
+    <g transform="translate(48, 44)">
+      <rect x="0" y="0" width="88" height="88" rx="24" fill="url(#app-icon-grad)" filter="drop-shadow(0 10px 20px rgba(99, 102, 241, 0.35))" />
+      <rect x="2" y="2" width="84" height="84" rx="22" fill="none" stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="1.5" />
       
-      <!-- Scaled Official Vector Artwork -->
-      <g transform="translate(7, 7) scale(0.833)">
-        <rect x="4" y="4" width="88" height="88" rx="22" fill="#1E293B" />
-        <rect x="14" y="14" width="68" height="68" rx="18" fill="url(#chitrax-frame)" />
-        <rect x="24" y="32" width="48" height="36" rx="8" fill="#0B132B" stroke="#38BDF8" stroke-width="1.5" />
-        <circle cx="60" cy="42" r="5" fill="#FACC15" />
-        <path d="M28 62 L40 48 L48 57 L55 50 L65 62 Z" fill="url(#chitrax-landscape)" />
-        <g class="spark-anim">
-          <path d="M76 18 L79.5 25.5 L87 29 L79.5 32.5 L76 40 L72.5 32.5 L65 29 L72.5 25.5 Z" fill="url(#chitrax-spark)" />
-        </g>
+      <!-- Inner Picture Frame & Landscape -->
+      <g transform="translate(18, 18)">
+        <rect x="0" y="6" width="52" height="42" rx="10" fill="#FFFFFF" fill-opacity="0.2" stroke="#FFFFFF" stroke-width="2.5" />
+        <circle cx="38" cy="18" r="4.5" fill="#FFFFFF" />
+        <path d="M6 42 L20 28 L30 36 L38 28 L46 42 Z" fill="#FFFFFF" />
       </g>
+      <!-- Sparkle top right -->
+      <path d="M66 14 L68.5 20 L74.5 22.5 L68.5 25 L66 31 L63.5 25 L57.5 22.5 L63.5 20 Z" fill="#FFFFFF" filter="drop-shadow(0 0 4px #FFFFFF)" />
     </g>
 
-    <!-- App Title -->
-    <g transform="translate(162, 88)">
-      <text x="0" y="0" font-size="38" font-weight="900" fill="#F8FAFC" letter-spacing="-1.2px">
-        Chitr<tspan fill="#818CF8">ax</tspan>
+    <!-- Title and Subtitle -->
+    <g transform="translate(156, 82)">
+      <text x="0" y="0" font-size="38" font-weight="900" fill="#0F172A" letter-spacing="-1px">
+        Chitr<tspan fill="#6366F1">ax</tspan>
       </text>
 
-      <!-- Live Web Suite Pill -->
-      <g transform="translate(168, -24)">
-        <rect x="0" y="0" width="136" height="26" rx="13" fill="#1E1B4B" stroke="#6366F1" stroke-width="1" />
-        <circle cx="12" cy="13" r="4" fill="#38BDF8" />
-        <text x="22" y="17" font-size="11.5" font-weight="800" fill="#38BDF8" letter-spacing="0.5px">LIVE WEB SUITE</text>
-      </g>
+      <!-- Version Pill -->
+      <rect x="176" y="-22" width="62" height="24" rx="12" fill="#EDE9FE" />
+      <text x="207" y="-6" font-size="12" font-weight="700" fill="#6D28D9" text-anchor="middle">v1.0.0</text>
 
       <!-- Subtitle -->
-      <text x="0" y="30" font-size="15.5" font-weight="500" fill="#94A3B8" letter-spacing="-0.2px">
-        100% In-Browser Image &amp; PDF Creative Workspace • Zero Server Uploads • Client-Side WASM
+      <text x="0" y="28" font-size="15" font-weight="600" fill="#334155" letter-spacing="-0.2px">
+        Privacy-First <tspan font-weight="800" fill="#6366F1">Image &amp; PDF</tspan> Workspace
       </text>
     </g>
 
-    <!-- Header Right: MorningStar Web Official Branding -->
-    <g transform="translate(710, 48)">
-      <line x1="0" y1="6" x2="0" y2="76" stroke="#334155" stroke-width="1.5" />
-      
+    <!-- Header Right: MorningStar Web Brand Lockup -->
+    <g transform="translate(680, 48)">
+      <line x1="0" y1="6" x2="0" y2="76" stroke="#E2E8F0" stroke-width="1.5" />
+
       <!-- Four-point star emblem -->
       <g class="twinkle" transform="translate(36, 38)">
-        <path d="M0 -22 C0 -6 6 0 22 0 C6 0 0 6 0 22 C0 6 -6 0 -22 0 C-6 0 0 -6 0 -22 Z" fill="url(#star-cyan-violet)" />
+        <path d="M0 -22 C0 -6 6 0 22 0 C6 0 0 6 0 22 C0 6 -6 0 -22 0 C-6 0 0 -6 0 -22 Z" fill="url(#star-grad)" />
       </g>
 
       <g transform="translate(72, 28)">
-        <text x="0" y="8" font-size="20" font-weight="800" fill="#F8FAFC" letter-spacing="-0.3px">MorningStar Web</text>
-        <text x="0" y="27" font-size="12.5" font-weight="600" fill="#94A3B8" letter-spacing="0.4px">Software • Web • Applications</text>
+        <text x="0" y="8" font-size="20" font-weight="800" fill="#0F172A" letter-spacing="-0.3px">MorningStar Web</text>
+        <text x="0" y="27" font-size="12.5" font-weight="600" fill="#64748B" letter-spacing="0.4px">Software • Web • Applications</text>
       </g>
     </g>
   </g>
 
-  <!-- Badges Row (Neon Studio Dark Badges) -->
-  <g id="badges-row" transform="translate(52, 160)">
-    <!-- 1. Live Domain Badge -->
-    <rect x="0" y="0" width="138" height="36" rx="18" fill="url(#badge-cyan)" stroke="#06B6D4" stroke-width="1" />
-    <circle cx="18" cy="18" r="4.5" fill="#38BDF8" />
-    <text x="30" y="22" font-size="12" font-weight="800" fill="#E0F2FE">chitrax.app</text>
-
-    <!-- 2. Zero Uploads Private -->
-    <g transform="translate(146, 0)">
-      <rect x="0" y="0" width="168" height="36" rx="18" fill="url(#badge-emerald)" stroke="#10B981" stroke-width="1" />
-      <path d="M16 11L21 13V18C21 21 16 23 16 23C16 23 11 21 11 18V13L16 11Z" fill="#34D399" />
-      <text x="32" y="22" font-size="12" font-weight="800" fill="#D1FAE5">100% Client-Side</text>
-    </g>
-
-    <!-- 3. Engine WASM + Rust -->
-    <g transform="translate(322, 0)">
-      <rect x="0" y="0" width="154" height="36" rx="18" fill="url(#badge-amber)" stroke="#F59E0B" stroke-width="1" />
-      <circle cx="18" cy="18" r="8" fill="#F59E0B" opacity="0.3" />
-      <text x="18" y="22" font-size="11" font-weight="900" fill="#FDE68A" text-anchor="middle">W</text>
-      <text x="32" y="22" font-size="12" font-weight="800" fill="#FEF3C7">Rust WASM Core</text>
-    </g>
-
-    <!-- 4. AI Local Matting -->
-    <g transform="translate(484, 0)">
-      <rect x="0" y="0" width="144" height="36" rx="18" fill="url(#badge-purple)" stroke="#A855F7" stroke-width="1" />
-      <circle cx="16" cy="18" r="4.5" fill="#C084FC" />
-      <text x="28" y="22" font-size="12" font-weight="800" fill="#F3E8FF">ONNX AI Matting</text>
-    </g>
-
-    <!-- 5. Image Tools -->
-    <g transform="translate(636, 0)">
-      <rect x="0" y="0" width="128" height="36" rx="18" fill="url(#badge-indigo)" stroke="#818CF8" stroke-width="1" />
-      <text x="16" y="22" font-size="13">🎨</text>
-      <text x="34" y="22" font-size="12" font-weight="800" fill="#E0E7FF">10 Image Tools</text>
-    </g>
-
-    <!-- 6. PDF Tools -->
-    <g transform="translate(772, 0)">
-      <rect x="0" y="0" width="116" height="36" rx="18" fill="url(#badge-rose)" stroke="#F43F5E" stroke-width="1" />
-      <text x="16" y="22" font-size="13">📄</text>
-      <text x="34" y="22" font-size="12" font-weight="800" fill="#FFE4E6">8 PDF Tools</text>
-    </g>
-
-    <!-- 7. Edge SSR -->
-    <g transform="translate(896, 0)">
-      <rect x="0" y="0" width="76" height="36" rx="18" fill="#1E293B" stroke="#475569" stroke-width="1" />
-      <text x="14" y="22" font-size="12" font-weight="800" fill="#F8FAFC">Edge</text>
-    </g>
-  </g>
-
-  <!-- Summary Description Paragraph -->
-  <g transform="translate(52, 214)">
-    <text x="0" y="14" font-size="15" font-weight="500" fill="#E2E8F0" letter-spacing="-0.1px">
-      <tspan font-weight="800" fill="#38BDF8">Chitrax</tspan> is a high-performance, privacy-first web workspace for creative image and PDF workflows. Engineered with Astro 7, React 19,
+  <!-- DESCRIPTION & LIVE WEB APP BUTTON -->
+  <g transform="translate(48, 150)">
+    <!-- Description paragraph (2 lines) -->
+    <text x="0" y="14" font-size="13.5" font-weight="500" fill="#334155" letter-spacing="-0.1px">
+      <tspan font-weight="700" fill="#0F172A">Chitrax</tspan> is an ultra-fast, privacy-first web workspace for creative image manipulation and multi-page PDF processing.
     </text>
-    <text x="0" y="34" font-size="15" font-weight="500" fill="#94A3B8" letter-spacing="-0.1px">
-      and Rust WebAssembly, all file processing runs 100% client-side in the browser. Zero server uploads, zero cloud tracking, zero latency.
+    <text x="0" y="32" font-size="13.5" font-weight="500" fill="#334155" letter-spacing="-0.1px">
+      Engineered with <tspan font-weight="700" fill="#0F172A">Astro 7</tspan>, <tspan font-weight="700" fill="#0F172A">React 19</tspan>, <tspan font-weight="700" fill="#0F172A">Tailwind CSS v4</tspan>, and <tspan font-weight="700" fill="#6366F1">Rust WebAssembly</tspan>, Chitrax runs all computation 100% client-side
     </text>
-  </g>
+    <text x="0" y="50" font-size="13.5" font-weight="500" fill="#334155" letter-spacing="-0.1px">
+      inside the user's browser via multi-threaded Web Workers and local ONNX AI models.
+    </text>
 
-  <!-- Two Column Grid Cards (Obsidian Frosted Glass) -->
-  <!-- Left Box: 10 Image Tools -->
-  <g class="inner-shadow" transform="translate(52, 272)">
-    <rect x="0" y="0" width="448" height="210" rx="18" fill="url(#box-dark)" stroke="#334155" stroke-width="1.2" />
-    
-    <!-- Title -->
-    <g transform="translate(22, 22)">
-      <text x="0" y="16" font-size="19">🎨</text>
-      <text x="28" y="16" font-size="17" font-weight="800" fill="#38BDF8">Image Studio (10 Tools)</text>
-    </g>
-
-    <!-- 5 Feature bullet items -->
-    <g transform="translate(22, 60)">
-      <!-- Item 1 -->
-      <use href="#check-icon-cyan" x="0" y="0" />
-      <text x="32" y="15" font-size="13.5" font-weight="600" fill="#F1F5F9">AI Background Remover (Local ONNX Matting)</text>
-
-      <!-- Item 2 -->
-      <use href="#check-icon-cyan" x="0" y="28" />
-      <text x="32" y="43" font-size="13.5" font-weight="600" fill="#F1F5F9">Batch Image Compressor &amp; Smart Resizer</text>
-
-      <!-- Item 3 -->
-      <use href="#check-icon-cyan" x="0" y="56" />
-      <text x="32" y="71" font-size="13.5" font-weight="600" fill="#F1F5F9">Format Converter (JPG, PNG, WebP, GIF, BMP)</text>
-
-      <!-- Item 4 -->
-      <use href="#check-icon-cyan" x="0" y="84" />
-      <text x="32" y="99" font-size="13.5" font-weight="600" fill="#F1F5F9">Printable Passport Photo Sheet Creator</text>
-
-      <!-- Item 5 -->
-      <use href="#check-icon-cyan" x="0" y="112" />
-      <text x="32" y="127" font-size="13.5" font-weight="600" fill="#F1F5F9">Photo Enhancer, Crop &amp; Watermark Engine</text>
-    </g>
-  </g>
-
-  <!-- Right Box: 8 PDF Tools -->
-  <g class="inner-shadow" transform="translate(524, 272)">
-    <rect x="0" y="0" width="448" height="210" rx="18" fill="url(#box-dark)" stroke="#334155" stroke-width="1.2" />
-
-    <!-- Title -->
-    <g transform="translate(22, 22)">
-      <text x="0" y="16" font-size="19">📄</text>
-      <text x="28" y="16" font-size="17" font-weight="800" fill="#F43F5E">PDF Studio (8 Tools)</text>
-    </g>
-
-    <!-- 5 Feature bullet items -->
-    <g transform="translate(22, 60)">
-      <!-- Item 1 -->
-      <circle cx="11" cy="11" r="11" fill="#E11D48" />
-      <path d="M7 11.5L9.5 14L15 8.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-      <text x="32" y="15" font-size="13.5" font-weight="600" fill="#F1F5F9">Multi-Image to PDF &amp; PDF to Image (ZIP)</text>
-
-      <!-- Item 2 -->
-      <circle cx="11" cy="39" r="11" fill="#E11D48" />
-      <path d="M7 39.5L9.5 42L15 36.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-      <text x="32" y="43" font-size="13.5" font-weight="600" fill="#F1F5F9">In-Browser PDF Compressor &amp; Page Rotator</text>
-
-      <!-- Item 3 -->
-      <circle cx="11" cy="67" r="11" fill="#E11D48" />
-      <path d="M7 67.5L9.5 70L15 64.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-      <text x="32" y="71" font-size="13.5" font-weight="600" fill="#F1F5F9">Document Merger &amp; Page Group Splitter</text>
-
-      <!-- Item 4 -->
-      <circle cx="11" cy="95" r="11" fill="#E11D48" />
-      <path d="M7 95.5L9.5 98L15 92.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-      <text x="32" y="99" font-size="13.5" font-weight="600" fill="#F1F5F9">PDF to Word Text Extraction Engine</text>
-
-      <!-- Item 5 -->
-      <circle cx="11" cy="123" r="11" fill="#E11D48" />
-      <path d="M7 123.5L9.5 126L15 120.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-      <text x="32" y="127" font-size="13.5" font-weight="600" fill="#F1F5F9">AES Password Encryption &amp; Document Protect</text>
-    </g>
-  </g>
-
-  <!-- Bottom Box: Zero-Upload Privacy Guarantee -->
-  <g class="inner-shadow" transform="translate(52, 498)">
-    <rect x="0" y="0" width="920" height="92" rx="16" fill="url(#box-dark)" stroke="#334155" stroke-width="1.2" />
-    <rect x="0" y="0" width="5" height="92" rx="2" fill="#06B6D4" />
-
-    <g transform="translate(24, 22)">
-      <text x="0" y="13" font-size="16">🔒</text>
-      <text x="26" y="13" font-size="15" font-weight="800" fill="#38BDF8">Zero-Upload Privacy Architecture &amp; Local Hardware Acceleration</text>
+    <!-- Live Web Application Pill Box on the right -->
+    <g transform="translate(712, -10)">
+      <rect x="0" y="0" width="216" height="68" rx="16" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2" />
       
-      <text x="0" y="38" font-size="13.5" font-weight="500" fill="#CBD5E1">
-        Selected photos, scans, and PDFs never leave your browser. All AI matting, raster transformations, and cryptographic PDF operations
-      </text>
-      <text x="0" y="56" font-size="13.5" font-weight="500" fill="#CBD5E1">
-        execute 100% client-side via Web Workers and Rust WebAssembly (<tspan font-weight="700" fill="#38BDF8">crates/guided_filter</tspan>). Live at <tspan font-weight="700" fill="#38BDF8">chitrax.app</tspan>.
-      </text>
+      <!-- Heading -->
+      <g transform="translate(22, 20)">
+        <text x="0" y="0" font-size="14">🌐</text>
+        <text x="22" y="-1" font-size="13.5" font-weight="800" fill="#0F172A">Live Web Application</text>
+      </g>
+
+      <!-- Pill Button -->
+      <g transform="translate(14, 28)">
+        <rect x="0" y="0" width="188" height="30" rx="15" fill="#6366F1" filter="drop-shadow(0 4px 10px rgba(99, 102, 241, 0.35))" />
+        <text x="94" y="20" font-size="12.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">https://chitrax.app ↗</text>
+      </g>
     </g>
   </g>
 
-  <!-- Bottom Navigation Buttons Bar (Studio Dark Pills) -->
-  <g transform="translate(52, 604)">
-    <!-- Pill 1 -->
-    <rect x="0" y="0" width="144" height="34" rx="17" fill="#1E293B" stroke="#475569" stroke-width="1" />
-    <text x="14" y="21" font-size="13">🎨</text>
-    <text x="36" y="21" font-size="12" font-weight="800" fill="#E2E8F0">Image Tools</text>
+  <!-- BADGES ROW -->
+  <g id="badges-row" transform="translate(48, 224)">
+    <!-- 1. Live Web App -->
+    <rect x="0" y="0" width="132" height="32" rx="16" fill="#EDE9FE" stroke="#DDD6FE" stroke-width="1" />
+    <text x="14" y="20" font-size="12">⚡</text>
+    <text x="32" y="20" font-size="12" font-weight="700" fill="#6D28D9">Live Web App</text>
 
-    <!-- Pill 2 -->
+    <!-- 2. Privacy -->
+    <g transform="translate(140, 0)">
+      <rect x="0" y="0" width="102" height="32" rx="16" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1" />
+      <path d="M14 9L19 11V16C19 19 14 21 14 21C14 21 9 19 9 16V11L14 9Z" fill="#10B981" />
+      <text x="26" y="20" font-size="12" font-weight="700" fill="#065F46">Privacy</text>
+    </g>
+
+    <!-- 3. WASM Engine -->
+    <g transform="translate(250, 0)">
+      <rect x="0" y="0" width="144" height="32" rx="16" fill="#E0F2FE" stroke="#BAE6FD" stroke-width="1" />
+      <text x="14" y="20" font-size="12" font-weight="800" fill="#0369A1">&lt;/&gt;</text>
+      <text x="36" y="20" font-size="12" font-weight="700" fill="#075985">WASM Engine</text>
+    </g>
+
+    <!-- 4. Framework -->
+    <g transform="translate(402, 0)">
+      <rect x="0" y="0" width="128" height="32" rx="16" fill="#F3E8FF" stroke="#E9D5FF" stroke-width="1" />
+      <text x="14" y="20" font-size="13">🗂️</text>
+      <text x="34" y="20" font-size="12" font-weight="700" fill="#6B21A8">Framework</text>
+    </g>
+
+    <!-- 5. Edge Cloud -->
+    <g transform="translate(538, 0)">
+      <rect x="0" y="0" width="124" height="32" rx="16" fill="#FEF3C7" stroke="#FDE68A" stroke-width="1" />
+      <text x="14" y="20" font-size="13">☁️</text>
+      <text x="34" y="20" font-size="12" font-weight="700" fill="#92400E">Edge Cloud</text>
+    </g>
+
+    <!-- 6. Tools -->
+    <g transform="translate(670, 0)">
+      <rect x="0" y="0" width="98" height="32" rx="16" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="1" />
+      <text x="14" y="20" font-size="13">🔧</text>
+      <text x="34" y="20" font-size="12" font-weight="700" fill="#5B21B6">Tools</text>
+    </g>
+
+    <!-- 7. License -->
+    <g transform="translate(776, 0)">
+      <rect x="0" y="0" width="108" height="32" rx="16" fill="#FEF9C3" stroke="#FDE047" stroke-width="1" />
+      <text x="14" y="20" font-size="13">⚖️</text>
+      <text x="34" y="20" font-size="12" font-weight="700" fill="#854D0E">License</text>
+    </g>
+  </g>
+
+  <!-- ZERO-UPLOAD PRIVACY GUARANTEE BANNER -->
+  <g class="inner-shadow" transform="translate(48, 270)">
+    <rect x="0" y="0" width="928" height="54" rx="16" fill="url(#privacy-banner-bg)" stroke="#DDD6FE" stroke-width="1.2" />
+
+    <!-- Left Shield Icon & Title -->
+    <g transform="translate(24, 18)">
+      <circle cx="12" cy="9" r="12" fill="#EDE9FE" />
+      <path d="M12 3L18 6V11C18 15 12 18 12 18C12 18 6 15 6 11V6L12 3Z" fill="none" stroke="#6366F1" stroke-width="1.8" />
+      <path d="M10 9.5L11.5 11L14.5 8" fill="none" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+      
+      <text x="34" y="14" font-size="16" font-weight="800" fill="#0F172A">Zero-Upload Privacy Guarantee</text>
+    </g>
+
+    <!-- Divider Line -->
+    <line x1="332" y1="12" x2="332" y2="42" stroke="#CBD5E1" stroke-width="1.2" />
+
+    <!-- Center Explainer Text -->
+    <g transform="translate(356, 21)">
+      <text x="0" y="2" font-size="12.5" font-weight="600" fill="#334155">
+        Zero file uploads. Zero server logs. Zero cloud storage.
+      </text>
+      <text x="0" y="18" font-size="12" font-weight="500" fill="#64748B">
+        Your sensitive images and documents never leave your computer.
+      </text>
+    </g>
+
+    <!-- Right: 3D Purple Padlock Illustration -->
+    <g transform="translate(864, 10)">
+      <!-- Padlock shackle -->
+      <path d="M14 16V10C14 5.58 17.58 2 22 2C26.42 2 30 5.58 30 10V16" fill="none" stroke="#A78BFA" stroke-width="4.5" stroke-linecap="round" />
+      <!-- Padlock body -->
+      <rect x="6" y="14" width="32" height="26" rx="8" fill="url(#photo-grad)" filter="drop-shadow(0 4px 8px rgba(124, 58, 237, 0.4))" />
+      <circle cx="22" cy="24" r="3.5" fill="#FFFFFF" />
+      <path d="M22 26V31" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" />
+    </g>
+  </g>
+
+  <!-- TWO MAIN GRID CARDS (Image Tools & PDF Tools) -->
+  <!-- LEFT CARD: 10 Image Tools -->
+  <g class="inner-shadow" transform="translate(48, 338)">
+    <rect x="0" y="0" width="452" height="172" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2" />
+
+    <!-- Header -->
+    <g transform="translate(20, 22)">
+      <text x="0" y="16" font-size="18">🖼️</text>
+      <text x="28" y="16" font-size="17" font-weight="800" fill="#6D28D9">10 Image Tools</text>
+    </g>
+
+    <!-- Column 1 (5 items) -->
+    <g transform="translate(20, 56)">
+      <use href="#check-icon-green" x="0" y="0" />
+      <text x="24" y="13" font-size="12.5" font-weight="600" fill="#1E293B">AI Background Remover</text>
+
+      <use href="#check-icon-green" x="0" y="22" />
+      <text x="24" y="35" font-size="12.5" font-weight="600" fill="#1E293B">Image Compressor</text>
+
+      <use href="#check-icon-green" x="0" y="44" />
+      <text x="24" y="57" font-size="12.5" font-weight="600" fill="#1E293B">Image Resizer</text>
+
+      <use href="#check-icon-green" x="0" y="66" />
+      <text x="24" y="79" font-size="12.5" font-weight="600" fill="#1E293B">Format Converter</text>
+
+      <use href="#check-icon-green" x="0" y="88" />
+      <text x="24" y="101" font-size="12.5" font-weight="600" fill="#1E293B">Passport Photo Maker</text>
+    </g>
+
+    <!-- Column 2 (5 items) -->
+    <g transform="translate(182, 56)">
+      <use href="#check-icon-green" x="0" y="0" />
+      <text x="24" y="13" font-size="12.5" font-weight="600" fill="#1E293B">Photo Enhancer</text>
+
+      <use href="#check-icon-green" x="0" y="22" />
+      <text x="24" y="35" font-size="12.5" font-weight="600" fill="#1E293B">Precision Crop</text>
+
+      <use href="#check-icon-green" x="0" y="44" />
+      <text x="24" y="57" font-size="12.5" font-weight="600" fill="#1E293B">Rotate &amp; Mirror</text>
+
+      <use href="#check-icon-green" x="0" y="66" />
+      <text x="24" y="79" font-size="12.5" font-weight="600" fill="#1E293B">Add Watermark</text>
+
+      <use href="#check-icon-green" x="0" y="88" />
+      <text x="24" y="101" font-size="12.5" font-weight="600" fill="#1E293B">Remove Watermark</text>
+    </g>
+
+    <!-- Right side: Floating 3D photo / polaroid graphics -->
+    <g class="float-card-anim" transform="translate(340, 52)">
+      <!-- Back card -->
+      <rect x="12" y="4" width="86" height="96" rx="10" fill="#F3E8FF" stroke="#DDD6FE" stroke-width="1.5" transform="rotate(-6 55 52)" />
+      
+      <!-- Front card with purple photo scene -->
+      <rect x="22" y="16" width="84" height="94" rx="10" fill="#EDE9FE" filter="drop-shadow(0 8px 16px rgba(124, 58, 237, 0.2))" />
+      <rect x="28" y="22" width="72" height="60" rx="8" fill="url(#photo-grad)" />
+      
+      <!-- Mountain & sun inside front card -->
+      <circle cx="82" cy="38" r="5" fill="#FDE047" />
+      <path d="M34 76 L52 54 L66 68 L74 60 L88 76 Z" fill="#FFFFFF" />
+    </g>
+  </g>
+
+  <!-- RIGHT CARD: 8 PDF Tools -->
+  <g class="inner-shadow" transform="translate(524, 338)">
+    <rect x="0" y="0" width="452" height="172" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2" />
+
+    <!-- Header -->
+    <g transform="translate(20, 22)">
+      <text x="0" y="16" font-size="18">📑</text>
+      <text x="28" y="16" font-size="17" font-weight="800" fill="#047857">8 PDF Tools</text>
+    </g>
+
+    <!-- Column 1 (4 items) -->
+    <g transform="translate(20, 58)">
+      <use href="#check-icon-green" x="0" y="0" />
+      <text x="24" y="13" font-size="12.5" font-weight="600" fill="#1E293B">Image to PDF</text>
+
+      <use href="#check-icon-green" x="0" y="24" />
+      <text x="24" y="37" font-size="12.5" font-weight="600" fill="#1E293B">PDF to Image</text>
+
+      <use href="#check-icon-green" x="0" y="48" />
+      <text x="24" y="61" font-size="12.5" font-weight="600" fill="#1E293B">Compress PDF</text>
+
+      <use href="#check-icon-green" x="0" y="72" />
+      <text x="24" y="85" font-size="12.5" font-weight="600" fill="#1E293B">Split PDF</text>
+    </g>
+
+    <!-- Column 2 (4 items) -->
+    <g transform="translate(162, 58)">
+      <use href="#check-icon-green" x="0" y="0" />
+      <text x="24" y="13" font-size="12.5" font-weight="600" fill="#1E293B">Merge PDF</text>
+
+      <use href="#check-icon-green" x="0" y="24" />
+      <text x="24" y="37" font-size="12.5" font-weight="600" fill="#1E293B">PDF to Word</text>
+
+      <use href="#check-icon-green" x="0" y="48" />
+      <text x="24" y="61" font-size="12.5" font-weight="600" fill="#1E293B">Rotate Pages</text>
+
+      <use href="#check-icon-green" x="0" y="72" />
+      <text x="24" y="85" font-size="12.5" font-weight="600" fill="#1E293B">Protect PDF</text>
+    </g>
+
+    <!-- Right side: Floating 3D PDF document stack -->
+    <g class="float-pdf-anim" transform="translate(330, 48)">
+      <!-- Document back sheet -->
+      <rect x="22" y="6" width="76" height="96" rx="8" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1.5" transform="rotate(-6 60 54)" />
+      
+      <!-- Document front sheet -->
+      <rect x="30" y="14" width="78" height="98" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" filter="drop-shadow(0 8px 16px rgba(0, 0, 0, 0.08))" />
+      
+      <!-- Page content placeholder lines -->
+      <line x1="42" y1="34" x2="84" y2="34" stroke="#CBD5E1" stroke-width="3" stroke-linecap="round" />
+      <line x1="42" y1="44" x2="92" y2="44" stroke="#CBD5E1" stroke-width="3" stroke-linecap="round" />
+      <line x1="42" y1="54" x2="78" y2="54" stroke="#CBD5E1" stroke-width="3" stroke-linecap="round" />
+
+      <!-- PDF Pill Badge -->
+      <g transform="translate(54, 72)">
+        <rect x="0" y="0" width="56" height="24" rx="6" fill="#7C3AED" filter="drop-shadow(0 4px 8px rgba(124, 58, 237, 0.4))" />
+        <text x="28" y="16" font-size="11.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">PDF</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- BOTTOM 3-BOX ROW -->
+  <!-- Box 1: Rust WebAssembly Core -->
+  <g class="inner-shadow" transform="translate(48, 524)">
+    <rect x="0" y="0" width="258" height="88" rx="14" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2" />
+
+    <!-- Rust Logo -->
+    <g transform="translate(14, 18)">
+      <circle cx="18" cy="18" r="18" fill="#FF7043" opacity="0.15" />
+      <path d="M18 7C11.9 7 7 11.9 7 18C7 24.1 11.9 29 18 29C24.1 29 29 24.1 29 18C29 11.9 24.1 7 18 7Z" fill="#D35400"/>
+      <path d="M15 13H21C22.6 13 24 14.4 24 16C24 17.2 23.3 18.2 22.2 18.6L24.5 23H21.5L19.5 19H17V23H15V13ZM17 15V17.5H21C21.8 17.5 22.5 16.8 22.5 16C22.5 15.2 21.8 14.5 21 14.5H17V15Z" fill="#FFFFFF"/>
+    </g>
+
+    <g transform="translate(58, 16)">
+      <text x="0" y="12" font-size="13" font-weight="800" fill="#0F172A">Rust WebAssembly Core</text>
+      <text x="0" y="27" font-size="10.5" font-weight="500" fill="#64748B">AI Background removal with a custom</text>
+      <text x="0" y="39" font-size="10.5" font-weight="500" fill="#64748B">Rust WASM guided filter for precise</text>
+      <text x="0" y="51" font-size="10.5" font-weight="500" fill="#64748B">hair, fur, and transparent edges.</text>
+
+      <rect x="0" y="58" width="94" height="18" rx="9" fill="#EDE9FE" />
+      <text x="47" y="71" font-size="10" font-weight="800" fill="#6D28D9" text-anchor="middle">23.8 KB WASM</text>
+    </g>
+  </g>
+
+  <!-- Box 2: Technical Benchmarks -->
+  <g class="inner-shadow" transform="translate(318, 524)">
+    <rect x="0" y="0" width="374" height="88" rx="14" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2" />
+
+    <g transform="translate(14, 16)">
+      <text x="0" y="10" font-size="13">📊</text>
+      <text x="18" y="10" font-size="13" font-weight="800" fill="#0F172A">Technical Benchmarks</text>
+    </g>
+
+    <!-- 5 Metric Tiles -->
+    <g transform="translate(12, 34)">
+      <!-- Tile 1 -->
+      <rect x="0" y="0" width="66" height="44" rx="8" fill="url(#tile-yellow)" stroke="#FEF08A" stroke-width="1" />
+      <text x="33" y="15" font-size="11" text-anchor="middle">⚡</text>
+      <text x="33" y="28" font-size="11" font-weight="800" fill="#0F172A" text-anchor="middle">&lt;0.42s</text>
+      <text x="33" y="38" font-size="8.5" font-weight="600" fill="#64748B" text-anchor="middle">Page Load (TTI)</text>
+
+      <!-- Tile 2 -->
+      <g transform="translate(70, 0)">
+        <rect x="0" y="0" width="66" height="44" rx="8" fill="url(#tile-cyan)" stroke="#BAE6FD" stroke-width="1" />
+        <text x="33" y="15" font-size="11" text-anchor="middle">🖼️</text>
+        <text x="33" y="28" font-size="11" font-weight="800" fill="#0F172A" text-anchor="middle">48 ms</text>
+        <text x="33" y="38" font-size="8.5" font-weight="600" fill="#64748B" text-anchor="middle">24 MP Compress</text>
+      </g>
+
+      <!-- Tile 3 -->
+      <g transform="translate(140, 0)">
+        <rect x="0" y="0" width="66" height="44" rx="8" fill="url(#tile-purple)" stroke="#E9D5FF" stroke-width="1" />
+        <text x="33" y="15" font-size="11" text-anchor="middle">✂️</text>
+        <text x="33" y="28" font-size="11" font-weight="800" fill="#0F172A" text-anchor="middle">1.15 s</text>
+        <text x="33" y="38" font-size="8.5" font-weight="600" fill="#64748B" text-anchor="middle">AI Cutout</text>
+      </g>
+
+      <!-- Tile 4 -->
+      <g transform="translate(210, 0)">
+        <rect x="0" y="0" width="66" height="44" rx="8" fill="url(#tile-blue)" stroke="#BFDBFE" stroke-width="1" />
+        <text x="33" y="15" font-size="11" text-anchor="middle">📑</text>
+        <text x="33" y="28" font-size="11" font-weight="800" fill="#0F172A" text-anchor="middle">310 ms</text>
+        <text x="33" y="38" font-size="8.5" font-weight="600" fill="#64748B" text-anchor="middle">100-Page Merge</text>
+      </g>
+
+      <!-- Tile 5 -->
+      <g transform="translate(280, 0)">
+        <rect x="0" y="0" width="66" height="44" rx="8" fill="url(#tile-green)" stroke="#A7F3D0" stroke-width="1" />
+        <text x="33" y="15" font-size="11" text-anchor="middle">🛡️</text>
+        <text x="33" y="28" font-size="11" font-weight="800" fill="#065F46" text-anchor="middle">0 Bytes</text>
+        <text x="33" y="38" font-size="8.5" font-weight="600" fill="#047857" text-anchor="middle">Data Leakage</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Box 3: Tech Stack -->
+  <g class="inner-shadow" transform="translate(704, 524)">
+    <rect x="0" y="0" width="272" height="88" rx="14" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2" />
+
+    <g transform="translate(14, 16)">
+      <text x="0" y="10" font-size="13" font-weight="900" fill="#6366F1">&lt;/&gt;</text>
+      <text x="24" y="10" font-size="13" font-weight="800" fill="#0F172A">Tech Stack</text>
+    </g>
+
+    <!-- 6 Stack Icons -->
+    <g transform="translate(14, 38)">
+      <!-- 1. Astro -->
+      <g transform="translate(0, 0)">
+        <circle cx="16" cy="12" r="10" fill="#F43F5E" opacity="0.15" />
+        <path d="M12 17L16 7L20 17" stroke="#F43F5E" stroke-width="2" stroke-linecap="round" fill="none" />
+        <text x="16" y="32" font-size="8.5" font-weight="700" fill="#334155" text-anchor="middle">Astro 7</text>
+      </g>
+
+      <!-- 2. React 19 -->
+      <g transform="translate(42, 0)">
+        <circle cx="16" cy="12" r="10" fill="#0284C7" opacity="0.15" />
+        <ellipse cx="16" cy="12" rx="8" ry="3" fill="none" stroke="#00D8FE" stroke-width="1.5" />
+        <ellipse cx="16" cy="12" rx="8" ry="3" fill="none" stroke="#00D8FE" stroke-width="1.5" transform="rotate(60 16 12)" />
+        <circle cx="16" cy="12" r="1.5" fill="#00D8FE" />
+        <text x="16" y="32" font-size="8.5" font-weight="700" fill="#334155" text-anchor="middle">React 19</text>
+      </g>
+
+      <!-- 3. Tailwind v4 -->
+      <g transform="translate(84, 0)">
+        <circle cx="16" cy="12" r="10" fill="#06B6D4" opacity="0.15" />
+        <path d="M11 11C12 9 14 9 16 9C18 9 19 11 20 11C21 11 21.5 10 22 9.5" stroke="#06B6D4" stroke-width="1.8" stroke-linecap="round" fill="none" />
+        <text x="16" y="32" font-size="8.5" font-weight="700" fill="#334155" text-anchor="middle">Tailwind v4</text>
+      </g>
+
+      <!-- 4. Rust (WASM) -->
+      <g transform="translate(126, 0)">
+        <circle cx="16" cy="12" r="10" fill="#EA580C" opacity="0.15" />
+        <text x="16" y="16" font-size="10" font-weight="900" fill="#C2410C" text-anchor="middle">R</text>
+        <text x="16" y="32" font-size="8.5" font-weight="700" fill="#334155" text-anchor="middle">Rust (WASM)</text>
+      </g>
+
+      <!-- 5. ONNX (Web) -->
+      <g transform="translate(168, 0)">
+        <circle cx="16" cy="12" r="10" fill="#64748B" opacity="0.15" />
+        <polygon points="16,6 23,10 23,17 16,21 9,17 9,10" fill="none" stroke="#475569" stroke-width="1.5" />
+        <text x="16" y="32" font-size="8.5" font-weight="700" fill="#334155" text-anchor="middle">ONNX (Web)</text>
+      </g>
+
+      <!-- 6. PDF (pdf-lib) -->
+      <g transform="translate(210, 0)">
+        <rect x="8" y="4" width="16" height="18" rx="3" fill="#EF4444" />
+        <text x="16" y="16" font-size="7.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">PDF</text>
+        <text x="16" y="32" font-size="8.5" font-weight="700" fill="#334155" text-anchor="middle">pdf-lib</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- FOOTER NAVIGATION BAR -->
+  <g transform="translate(48, 626)">
+    <!-- Pill 1: Architecture -->
+    <rect x="0" y="0" width="144" height="34" rx="17" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" />
+    <text x="14" y="21" font-size="13">🏛️</text>
+    <text x="36" y="21" font-size="12" font-weight="700" fill="#334155">System Architecture</text>
+
+    <!-- Pill 2: Benchmarks -->
     <g transform="translate(152, 0)">
-      <rect x="0" y="0" width="146" height="34" rx="17" fill="#1E293B" stroke="#475569" stroke-width="1" />
-      <text x="14" y="21" font-size="13">📄</text>
-      <text x="36" y="21" font-size="12" font-weight="800" fill="#E2E8F0">PDF Tools</text>
+      <rect x="0" y="0" width="118" height="34" rx="17" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" />
+      <text x="14" y="21" font-size="13">📊</text>
+      <text x="34" y="21" font-size="12" font-weight="700" fill="#334155">Benchmarks</text>
     </g>
 
-    <!-- Pill 3 -->
-    <g transform="translate(306, 0)">
-      <rect x="0" y="0" width="146" height="34" rx="17" fill="#1E293B" stroke="#475569" stroke-width="1" />
-      <text x="14" y="21" font-size="13">⚡</text>
-      <text x="36" y="21" font-size="12" font-weight="800" fill="#E2E8F0">Rust WASM</text>
-    </g>
-
-    <!-- Pill 4 -->
-    <g transform="translate(460, 0)">
-      <rect x="0" y="0" width="148" height="34" rx="17" fill="#1E293B" stroke="#475569" stroke-width="1" />
-      <text x="14" y="21" font-size="13">🔒</text>
-      <text x="36" y="21" font-size="12" font-weight="800" fill="#E2E8F0">Zero-Upload</text>
-    </g>
-
-    <!-- Pill 5 -->
-    <g transform="translate(616, 0)">
-      <rect x="0" y="0" width="142" height="34" rx="17" fill="#083344" stroke="#06B6D4" stroke-width="1" />
-      <text x="14" y="21" font-size="13">🚀</text>
-      <text x="36" y="21" font-size="12" font-weight="800" fill="#38BDF8">chitrax.app</text>
-    </g>
-
-    <!-- Pill 6 -->
-    <g transform="translate(766, 0)">
-      <rect x="0" y="0" width="154" height="34" rx="17" fill="#1E1B4B" stroke="#818CF8" stroke-width="1" />
+    <!-- Pill 3: MorningStar Web Ecosystem -->
+    <g transform="translate(278, 0)">
+      <rect x="0" y="0" width="186" height="34" rx="17" fill="#F5F3FF" stroke="#C4B5FD" stroke-width="1" />
       <text x="14" y="21" font-size="13">🌐</text>
-      <text x="36" y="21" font-size="12" font-weight="800" fill="#C7D2FE">MorningStar Web</text>
+      <text x="36" y="21" font-size="12" font-weight="700" fill="#6D28D9">MorningStar Web Ecosystem</text>
+    </g>
+
+    <!-- Pill 4 (Right): Founder Lockup -->
+    <g transform="translate(562, 0)">
+      <rect x="0" y="0" width="366" height="34" rx="17" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="1" />
+      <text x="14" y="21" font-size="13">👤</text>
+      <text x="36" y="21" font-size="12" font-weight="700" fill="#6D28D9">
+        Founder &amp; Systems Architect: <tspan font-weight="800" fill="#0F172A">Samim Aktar (@samimaktar081)</tspan>
+      </text>
     </g>
   </g>
 </svg>

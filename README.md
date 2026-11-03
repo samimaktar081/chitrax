@@ -1,19 +1,19 @@
 <div align="center">
 
-<!-- Hero Animated Studio Dark Showcase Card -->
+<!-- Hero Animated Light Showcase Card Matching Reference -->
 <a href="https://chitrax.app">
-  <img src="./assets/chitrax-hero.svg" alt="Chitrax - 100% In-Browser Image & PDF Creative Workspace" width="100%" />
+  <img src="./assets/chitrax-hero.svg" alt="Chitrax - Privacy-First Image & PDF Workspace" width="100%" />
 </a>
 
 <br/><br/>
 
 [![Live Web App](https://img.shields.io/badge/Live_Web_App-chitrax.app-00E676?style=for-the-badge&logo=googlechrome&logoColor=black)](https://chitrax.app)
-[![Privacy](https://img.shields.io/badge/Privacy-100%25_Client--Side_Zero_Uploads-00B0FF?style=for-the-badge&logo=shield&logoColor=white)](#privacy-architecture)
-[![WASM Engine](https://img.shields.io/badge/WASM_Core-Rust_+_WebAssembly-FF6D00?style=for-the-badge&logo=rust&logoColor=white)](#webassembly-core)
+[![Privacy](https://img.shields.io/badge/Privacy-100%25_Client--Side_Zero_Uploads-00B0FF?style=for-the-badge&logo=shield&logoColor=white)](#zero-upload-privacy)
+[![WASM Core](https://img.shields.io/badge/WASM_Core-Rust_+_WebAssembly-FF6D00?style=for-the-badge&logo=rust&logoColor=white)](#rust-webassembly)
 <br/>
 [![Framework](https://img.shields.io/badge/Framework-Astro_7_+_React_19-BC52EE?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build)
-[![Edge Cloud](https://img.shields.io/badge/Deployment-Cloudflare_SSR-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://cloudflare.com)
-[![Tools](https://img.shields.io/badge/Tools-18_Active_Studios-7C4DFF?style=for-the-badge&logo=adobeworkfront&logoColor=white)](#active-tools)
+[![Edge Cloud](https://img.shields.io/badge/Edge_Cloud-Cloudflare_SSR-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://cloudflare.com)
+[![Tools](https://img.shields.io/badge/Tools-18_Active_Studios-7C4DFF?style=for-the-badge&logo=adobeworkfront&logoColor=white)](#image-tools)
 [![License](https://img.shields.io/badge/License-MIT-FFD600?style=for-the-badge&logoColor=black)](LICENSE)
 
 <br/>
@@ -26,11 +26,11 @@
 <br/>
 
 <p align="center">
-  <a href="#image-tools"><b>🎨 10 Image Tools</b></a> &nbsp;•&nbsp;
+  <a href="#zero-upload-privacy"><b>🔒 Privacy Guarantee</b></a> &nbsp;•&nbsp;
+  <a href="#image-tools"><b>🖼️ 10 Image Tools</b></a> &nbsp;•&nbsp;
   <a href="#pdf-tools"><b>📄 8 PDF Tools</b></a> &nbsp;•&nbsp;
-  <a href="#privacy-architecture"><b>🔒 Zero-Upload Privacy</b></a> &nbsp;•&nbsp;
-  <a href="#webassembly-core"><b>⚡ Rust WASM</b></a> &nbsp;•&nbsp;
-  <a href="#architecture"><b>🏛️ Architecture</b></a> &nbsp;•&nbsp;
+  <a href="#rust-webassembly"><b>⚡ Rust WASM</b></a> &nbsp;•&nbsp;
+  <a href="#benchmarks"><b>📊 Benchmarks</b></a> &nbsp;•&nbsp;
   <a href="https://chitrax.app"><b>🚀 Launch chitrax.app</b></a>
 </p>
 
@@ -38,8 +38,8 @@
 
 ---
 
-<a id="privacy-architecture"></a>
-## 🔒 The Zero-Upload Privacy Guarantee
+<a id="zero-upload-privacy"></a>
+## 🔒 Zero-Upload Privacy Guarantee
 
 Standard image and PDF utility websites (Smallpdf, iLovePDF, Remove.bg) require users to upload confidential files, scans, financial invoices, and medical records to their centralized cloud servers.
 
@@ -59,15 +59,14 @@ Standard image and PDF utility websites (Smallpdf, iLovePDF, Remove.bg) require 
                                              (Zero Bytes Transmitted to Server)
 ```
 
-- **Strict Sandbox Boundaries:** File reading, raster pixel transformations, vector generation, and PDF cryptographic hashing occur exclusively in your local machine's RAM.
 - **Zero Server Retention:** Chitrax's edge API servers (`POST /api/remove-bg`) return HTTP 410 without reading any request body. No user media is ever uploaded, cached, or logged.
-- **DPDP & HIPAA Compliance Aligned:** Safe for sensitive legal contracts, government identity cards, bank statements, and private family photos.
+- **Strict In-Memory Sandboxing:** File reading, raster pixel transformations, vector generation, and PDF cryptographic hashing occur exclusively in your local machine's RAM.
+- **DPDP & HIPAA Compliance Aligned:** Completely safe for sensitive legal contracts, government identity cards, bank statements, and private family photos.
 
 ---
 
-<a id="active-tools"></a>
 <a id="image-tools"></a>
-## 🎨 Active Image Tools (10 Specialized Studios)
+## 🖼️ 10 Active Image Tools
 
 All image tools support batch workflows up to 20 files, live side-by-side previews, and instant downloads directly from [chitrax.app](https://chitrax.app):
 
@@ -91,7 +90,7 @@ All image tools support batch workflows up to 20 files, live side-by-side previe
 ---
 
 <a id="pdf-tools"></a>
-## 📄 Active PDF Tools (8 High-Performance Modules)
+## 📄 8 Active PDF Tools
 
 Fast, secure PDF manipulation powered by client-side `pdf-lib` and Web Workers:
 
@@ -112,8 +111,8 @@ Fast, secure PDF manipulation powered by client-side `pdf-lib` and Web Workers:
 
 ---
 
-<a id="webassembly-core"></a>
-## ⚡ Rust WebAssembly Image Matting Core (`crates/guided_filter`)
+<a id="rust-webassembly"></a>
+## ⚡ Rust WebAssembly Core (`crates/guided_filter`)
 
 The AI background removal engine pairs a local neural network with a custom **Rust WebAssembly edge-preserving guided filter** ([`crates/guided_filter/src/lib.rs`](https://github.com/samimaktar081/chitrax)):
 
@@ -136,6 +135,25 @@ pub fn guided_filter_rgba(
 
 - **Hair & Fur Feathering:** Standard raw AI masks produce jagged binary boundaries. Chitrax's Rust WASM guided filter computes local covariance between color channels and alpha boundaries, extracting delicate hair strands, translucent fabrics, and glass edges seamlessly.
 - **Zero Jitter Performance:** Compiled to `wasm32-unknown-unknown` (23.8 KB binary footprint), processing a 4K image takes under **120 milliseconds** without UI thread blocking.
+
+---
+
+<a id="benchmarks"></a>
+## 📊 Technical Benchmarks
+
+Benchmarked on **Chrome 131, Windows 11 (Intel Core i7-13700H, 16GB RAM)**:
+
+<div align="center">
+
+| Metric | Measured Value | Architecture Layer |
+| :--- | :---: | :--- |
+| ⚡ **Page Load & TTI** | **`<0.42s`** | Cloudflare Global Edge SSR |
+| 🖼️ **24 MP Image Compression** | **`48 ms`** | Multi-Threaded Web Worker |
+| ✂️ **AI Background Removal** | **`1.15 s`** | Local ONNX + Rust WASM Guided Filter |
+| 📑 **100-Page PDF Merge** | **`310 ms`** | In-Memory `pdf-lib` ArrayBuffer |
+| 🛡️ **Data Privacy Leakage** | **`0 Bytes`** | 100% Client-Side Air-Gapped Sandbox |
+
+</div>
 
 ---
 
@@ -165,20 +183,6 @@ flowchart TD
 
 ---
 
-<a id="benchmarks"></a>
-## 📊 Technical Benchmarks
-
-Benchmarked on **Chrome 131, Windows 11 (Intel Core i7-13700H, 16GB RAM)**:
-
-### Key Metric Advantages:
-- 🚀 **Initial Page Load & TTI:** `<0.42 seconds` *(Cloudflare Edge SSR)*
-- 🖼️ **24 Megapixel Image Compression:** `48 ms` *(via Multi-Threaded Web Worker)*
-- ✂️ **AI Background Removal Cutout:** `1.15 seconds` *(Local ONNX + Rust WASM)*
-- 📄 **100-Page PDF Merge & Serialization:** `310 ms` *(In-Memory ArrayBuffer)*
-- 🔒 **Data Privacy Leakage:** `0 Bytes` *(100% Client-Side Air-Gapped)*
-
----
-
 <a id="tech-stack"></a>
 ## 🛠️ Complete Technical Stack
 
@@ -188,11 +192,11 @@ Benchmarked on **Chrome 131, Windows 11 (Intel Core i7-13700H, 16GB RAM)**:
 | :--- | :--- |
 | **Site Framework** | Astro 7.4, React 19.3, TypeScript 5.9 |
 | **Styling & Design** | Tailwind CSS v4, Lucide Icons, Plus Jakarta Sans |
-| **Native WebAssembly** | Rust Edition 2021, wasm-bindgen, `guided_filter.wasm` |
+| **Native WebAssembly** | Rust Edition 2021, wasm-bindgen, `guided_filter.wasm` (23.8 KB) |
 | **Machine Learning** | ONNX Runtime Web, `@imgly/background-removal` |
 | **PDF Engineering** | `pdf-lib`, `pdfjs-dist`, `@pdfsmaller/pdf-encrypt` |
 | **Compression & Packaging**| `browser-image-compression`, `jszip` |
-| **Edge Cloud** | Cloudflare Workers / Pages, Wrangler 4 |
+| **Edge Cloud Deployment** | Cloudflare Workers / Pages, Wrangler 4 |
 
 </div>
 
